@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="block">
+  <div class="card text-center">
+      <div class="card-header">
+        Result
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">There is a {{result["probability"]}}% chance that user {{result["output"]}}</h5>
+
+      </div>
+  </div>
+</div>
+{% endblock %}
