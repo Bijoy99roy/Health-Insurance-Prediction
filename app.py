@@ -37,11 +37,12 @@ def home():
         # creating Input_data folder
         pred_data_val.create_prediction_files('Input_data')
         column_info = pred_data_val.get_schema_values()
-        columns = column_info[1]
-        educations = columns['EDUCATION'].keys()
-        pays = columns['PAY'].keys()
-        logger.log(table_name, 'Deletion and creation of Input_data complete. Exiting method...', 'Info')
-        return render_template('index.html', data={'educations': educations, 'pays': pays})
+        #columns = column_info[0]
+        print(column_info)
+        region = column_info[0]
+        print(region)
+        logger.log(table_name, 'App started. Exiting method...', 'Info')
+        return render_template('index.html', data={'region': region})
     except Exception as e:
         logger.log(
             table_name,
@@ -76,9 +77,6 @@ def manual_input():
             for i, v in enumerate(selected.keys()):
                 if v in columns.keys():
                     property_col = columns[v][selected[v][0]]
-                    input_data.append(property_col)
-                elif v == 'smoker':
-                    property_col = columns['smoker'][selected[v][0]]
                     input_data.append(property_col)
                 else:
                     input_data.append(selected[v][0])

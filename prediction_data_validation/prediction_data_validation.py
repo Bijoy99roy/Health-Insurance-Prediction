@@ -76,10 +76,10 @@ class PredictionDataValidation:
                 dic = json.load(f)
                 f.close()
             column_names = dic["columnNames"]
-            column_number = dic["columnNumber"]
+            region = dic["region"]
             required_columns = dic["RequiredColumns"]
 
-            message = "ColumnNumber: "+str(column_number)+"\t"+"RequiredColumns: "+str(required_columns)+"\n"
+            message = "region: "+str(region)+"\t"+"RequiredColumns: "+str(required_columns)+"\n"
             self.logger.log(table_name, message, 'Info')
 
         except ValueError as v:
@@ -99,7 +99,7 @@ class PredictionDataValidation:
             self.logger.database.close_connection()
             raise e
         # returning tuple of these 3 values
-        return column_number, column_names, required_columns
+        return region, column_names, required_columns
 
     def validate_data_type(self):
         """
@@ -110,8 +110,10 @@ class PredictionDataValidation:
         try:
             self.logger.log(table_name, 'Entered ValidateDataType method of PredictionDataValidation class', 'Info')
             data = pd.read_csv('Input_data/input.csv')
-            for i in data.dtypes:
-                if i == np.int64 or i == np.float64:
+            for i in data.columns:
+                if data[[i]].dtypes[0] == np.int64 or data[[i]].dtypes[0] == np.float64:
+                    pass
+                elif i == 'Region' and data[[i]].dtypes[0] == np.dtype('O'):
                     pass
                 else:
                     self.logger.log(table_name, 'Failed valiadtion. Exiting.....', 'Error')
