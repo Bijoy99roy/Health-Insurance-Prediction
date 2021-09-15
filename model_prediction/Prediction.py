@@ -46,8 +46,8 @@ class Prediction:
                 self.table_name,
                 'Predction complete!!. Exiting Predict method of Prediction class ',
                 'Info')
-            self.logger.database.close_connection()
-            return round(predicted, 2)
+            # self.logger.database.close_connection()
+            return np.round(predicted, 2)
 
         except Exception as e:
             self.logger.log(
