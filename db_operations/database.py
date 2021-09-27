@@ -12,6 +12,7 @@ class DataBase:
             'secure_connect_bundle': config['database']['path']
         }
         self.auth_provider = PlainTextAuthProvider(config['database']['clientid'], config['database']['clientsecret'])
+        self.session = None
 
     def connect_db(self):
         """

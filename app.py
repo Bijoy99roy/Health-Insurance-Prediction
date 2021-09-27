@@ -37,10 +37,7 @@ def home():
         # creating Input_data folder
         pred_data_val.create_prediction_files('Input_data')
         column_info = pred_data_val.get_schema_values()
-        #columns = column_info[0]
-        print(column_info)
         region = column_info[0]
-        print(region)
         logger.log(table_name, 'App started. Exiting method...', 'Info')
         return render_template('index.html', data={'region': region})
     except Exception as e:

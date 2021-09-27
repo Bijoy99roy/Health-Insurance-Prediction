@@ -34,7 +34,6 @@ class Prediction:
             data = dataframe.copy()
             data = preprocessing.encode_data(data, 'Region')
             data = np.array(data)
-            print(data)
             # loading Random Forest Regressor model
             random_forest_regressor = file_handler.load_model('RandomForestRegressor')
             # predicting
