@@ -12,7 +12,7 @@ The dataset used here is Insurance Premium Prediction dataset from kaggle
 ```
 
 ## 🚀 Deployed App
-[Launch App]()
+[Launch App](https://insurance-premium-predictionn.herokuapp.com)
 
 ## Screenshots
 
